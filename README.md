@@ -1,4 +1,4 @@
-# CCG Lookup
+# Constituency Lookup
 Basic tool to lookup constituency and wards using just a UK postcode.
 
 https://stephenkeable.github.io/constituency-lookup/
