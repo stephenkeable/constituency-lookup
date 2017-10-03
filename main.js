@@ -40,13 +40,13 @@ function lookup_constituency_by_postcode(postcode_field) {
             ward_name.innerHTML = "<strong>Ward:</strong> " + data.result.admin_ward;
             output_div.insertAdjacentElement("beforeend", ward_name);
 
-            var county = document.createElement("p");
-            county.innerHTML = "<strong>County:</strong> " + (data.result.admin_county || data.result.admin_district);
-            output_div.insertAdjacentElement("beforeend", county);
-
             var district = document.createElement("p");
             district.innerHTML = "<strong>District:</strong> " + data.result.admin_district;
             output_div.insertAdjacentElement("beforeend", district);
+
+            var county = document.createElement("p");
+            county.innerHTML = "<strong>County:</strong> " + (data.result.admin_county || data.result.admin_district);
+            output_div.insertAdjacentElement("beforeend", county);
 
             var region = document.createElement("p");
             region.innerHTML = "<strong>Region:</strong> " + data.result.region;
