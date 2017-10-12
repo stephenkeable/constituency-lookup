@@ -19,6 +19,8 @@ lookup_button.addEventListener("click", function(e) {
 
 function lookup_constituency_by_postcode(postcode_field) {
     
+    gtag('event', 'search', {'search_term': 'postcode'});
+    
     var constituency_request_url = "https://api.postcodes.io/postcodes/" + encodeURIComponent(postcode_field.value.trim());
     
     var constituency_request = new XMLHttpRequest();
