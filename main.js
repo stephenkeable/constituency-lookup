@@ -18,25 +18,29 @@ lookup_button.addEventListener("click", function(e) {
 });
 
 function lookup_constituency_by_postcode(postcode_field) {
-    
+
     gtag('event', 'search', {'search_term': 'postcode'});
-    
+
     var constituency_request_url = "https://api.postcodes.io/postcodes/" + encodeURIComponent(postcode_field.value.trim());
-    
+
     var constituency_request = new XMLHttpRequest();
-                        
+
     constituency_request.open('GET', constituency_request_url, true);
 
     constituency_request.onload = function() {
         if (constituency_request.status === 200) {
 
             var data = JSON.parse(constituency_request.responseText);
-            
+
             output_div.innerHTML = "";
 
             var constituency_name = document.createElement("p");
             constituency_name.innerHTML = "<strong>Constituency:</strong> " + data.result.parliamentary_constituency;
             output_div.insertAdjacentElement("beforeend", constituency_name);
+
+            var european_electoral_region = document.createElement("p");
+            european_electoral_region.innerHTML = "<strong>European Electoral Region:</strong> " + data.result.european_electoral_region;
+            output_div.insertAdjacentElement("beforeend", european_electoral_region);
 
             var ward_name = document.createElement("p");
             ward_name.innerHTML = "<strong>Ward:</strong> " + data.result.admin_ward;
@@ -61,9 +65,9 @@ function lookup_constituency_by_postcode(postcode_field) {
         } else {
 
             //console.error(constituency_request.status + " error from API");
-            
+
             output_div.innerHTML = "";
-            
+
             var error_message = document.createElement("p");
             error_message.innerHTML = "Postcode not found";
             error_message.classList.add("error");
@@ -75,16 +79,16 @@ function lookup_constituency_by_postcode(postcode_field) {
     constituency_request.onerror = function() {
 
         //console.error("Connection error from API");
-            
+
         output_div.innerHTML = "";
 
         var error_message = document.createElement("p");
         error_message.innerHTML = "Connection error from API";
         error_message.classList.add("error");
         output_div.insertAdjacentElement("beforeend", error_message);
-        
+
     };
 
     constituency_request.send();
-    
+
 }
